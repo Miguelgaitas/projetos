@@ -1,6 +1,8 @@
 <?php
 session_start();
 include("conexao.php"); // Conexão com o banco de dados
+$headers = "MIME-Version: 1.0" . "\r\n";
+$headers .= "Content-type: text/html; charset=UTF-8" . "\r\n";
 
 $email = $_POST['email'];
 
@@ -28,12 +30,91 @@ if (mysqli_num_rows($resultado) == 1) {
 
     // Envie um e-mail com um link de redefinição de senha
     $assunto = "Redefinição de Senha";
-    $mensagem = "Olá $nomeUsuario,\n\n";
-    $mensagem .= "Você solicitou uma redefinição de senha. Clique no link abaixo para redefinir sua senha:\n\n";
-    $mensagem .= "http://localhost/PAP/reset_password.php?token=$token\n\n";
-    $mensagem .= "Se você não solicitou esta redefinição, ignore este e-mail.\n";
+    $mensagem = "<html>
+    <head>
+        <style>
+        /* Estilos gerais do email */
+        body {
+        background-color: black;
+        background-repeat: repeat;
+        background-size: cover;
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+        }
+        
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            min-width: 96vw;
+            min-height: 100vh;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        
+        h1 {
+            font-size: 24px;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+        
+        p {
+            font-size: 16px;
+            color: #fff;
+            line-height: 1.6;
+        }
+        
+        /* Estilos para o botão de redefinição de senha */
+        .btn {
+            display: inline-block;
+            background-color: #007BFF;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        
+        /* Rodapé do email */
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #777;
+        }
+        
+        /* Estilos específicos para o link de redefinição de senha */
+        .reset-link {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .reset-link:hover {
+            text-decoration: underline;
+        }
+        
+        </style>
+    </head>
+    <body>
+    <center>
+    <p><img src='http://localhost/PAP/imagens/Capturar-removebg-preview.png' alt='Logo' class='logo-image' style='width: 160px; height: auto;'></p>
+        <p>Olá $nomeUsuario,</p>
+        <p>Você solicitou uma redefinição de senha. Clique no link abaixo para redefinir sua senha:</p>
+        <p><a class='reset-link' href='http://localhost/PAP/reset_password.php?token=$token'>Redefinir Senha</a></p>
+        <p>Se você não solicitou esta redefinição, ignore este e-mail.</p>
+        </center>
+    </body>
+    </html>";
 
-    mail($email, $assunto, $mensagem);
+
+
+    mail($email, $assunto, $mensagem, $headers);
 
     $_SESSION['mensagem'] = "E-mail de redefinição de senha enviado com sucesso!";
 } else {

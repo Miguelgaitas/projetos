@@ -24,8 +24,7 @@
 			<img src="./imagens/Capturar-removebg-preview.png" alt="Logo" class="logo-image"
 				style="width: 130px; height: auto;">
 		</h2>
-		<nav class="navigation">
-		</nav>
+
 	</header>
 	<div class="warpper">
 		<span class="icon-close"><ion-icon name="close-outline"></ion-icon></span>
