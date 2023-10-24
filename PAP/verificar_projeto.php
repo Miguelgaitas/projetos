@@ -43,10 +43,20 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                     echo "Erro ao verificar o projeto: " . $conn->error;
                 }
             } elseif ($acao === "rejeitar") {
-                // Exclua o projeto da base de dados
-                $excluirSql = "DELETE FROM projetos_arduino WHERE id = $projetoId";
-                if ($conn->query($excluirSql) === TRUE) {
-                    echo "Projeto '$nome' rejeitado e excluído com sucesso!";
+                // Atualize o status para "rejeitado"
+                $atualizarSql = "UPDATE projetos_arduino SET status = 'rejeitado' WHERE id = $projetoId";
+                if ($conn->query($atualizarSql) === TRUE) {
+                    echo "Projeto '$nome' rejeitado com sucesso!";
+                    
+                    // Defina o prazo de edição para 1 semana (60 segundos * 60 minutos * 24 horas * 7 dias)
+                    $prazoEdicao = time() + (60 * 60 * 24 * 7);
+                    
+                    // Atualize o prazo de edição na base de dados
+                    $atualizarPrazoSql = "UPDATE projetos_arduino SET prazo_edicao = FROM_UNIXTIME($prazoEdicao) WHERE id = $projetoId";
+                    
+                    if ($conn->query($atualizarPrazoSql) !== TRUE) {
+                        echo "Erro ao definir o prazo de edição: " . $conn->error;
+                    }
                 } else {
                     echo "Erro ao rejeitar o projeto: " . $conn->error;
                 }
@@ -67,21 +77,76 @@ $conn->close();
 <html>
 <head>
     <title>Verificar Projeto</title>
-    <!-- Adicione seus estilos CSS aqui -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        p {
+            margin: 10px 0;
+            padding: 0;
+        }
+
+        img {
+            max-width: 50%;
+            display: block;
+            margin-top: 10px;
+        }
+
+        h2 {
+            margin: 20px 0 10px;
+            padding: 0;
+        }
+
+        .action-button {
+            display: inline-block;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .action-button:hover {
+            background-color: #555;
+        }
+    </style>
 </head>
 <body>
     <h1>Detalhes do Projeto</h1>
-    
-    <p><strong>Nome:</strong> <?php echo isset($nome) ? $nome : ''; ?></p>
-    <p><strong>Descrição:</strong> <?php echo isset($descricao) ? $descricao : ''; ?></p>
-    <p><strong>Imagem:</strong> <img src='./imagens/<?php echo isset($imagem) ? $imagem : ''; ?>' width='100px'></p>
-    <p><strong>Simulação:</strong> <?php echo isset($simulacao) ? $simulacao : ''; ?></p>
-    <p><strong>Código:</strong> <?php echo isset($codigo) ? $codigo : ''; ?></p>
-    
-    <h2>Ações</h2>
-    <p><a href="verificar_projeto.php?id=<?php echo $projetoId; ?>&acao=verificar">Verificar Projeto</a></p>
-    <p><a href="verificar_projeto.php?id=<?php echo $projetoId; ?>&acao=rejeitar">Rejeitar Projeto</a></p>
-    
-    <!-- Adicione seus scripts JavaScript aqui, se necessário -->
+    <div class="container">
+        <p><strong>Nome:</strong> <?php echo isset($nome) ? $nome : ''; ?></p>
+        <p><strong>Descrição:</strong> <?php echo isset($descricao) ? $descricao : ''; ?></p>
+        <p><strong>Imagem:</strong><br><img src='./imagens/<?php echo isset($imagem) ? $imagem : ''; ?>' alt="Imagem do Projeto">
+        <p><strong>Simulação:</strong><br> <?php echo isset($simulacao) ? $simulacao : ''; ?></p>
+        <p><strong>Código:</strong> <?php echo isset($codigo) ? $codigo : ''; ?></p>
+
+        <h2>Ações</h2>
+        <a class="action-button" href="verificar_projeto.php?id=<?php echo $projetoId; ?>&acao=verificar">Verificar Projeto</a>
+        <a class="action-button" href="verificar_projeto.php?id=<?php echo $projetoId; ?>&acao=rejeitar">Rejeitar Projeto</a>
+    </div>
 </body>
 </html>
+

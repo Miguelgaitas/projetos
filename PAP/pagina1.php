@@ -1,31 +1,53 @@
 <?php
+session_start();
 
-// Configurações do banco de dados
 $servername = "localhost";
 $username = "id20757658_miguelgaitas";
 $password = "MiguelGaitas24.";
 $dbname = "id20757658_dados_dos_registros";
 
-// Conecta ao banco de dados
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
   die("Falha na conexão com o banco de dados: " . $conn->connect_error);
 }
 
-session_start();
-
 function getProjetos($conn)
 {
   $meuID = $_SESSION['id_usuario'];
+  $search = ''; // Inicialize a variável de pesquisa
+  $filtro = ''; // Inicialize o filtro
+
+  if (isset($_POST['search'])) {
+    $search = mysqli_real_escape_string($conn, $_POST['search']);
+  }
+
+  if (isset($_POST['filtro'])) {
+    $filtro = $_POST['filtro'];
+  }
+
   $sql = "SELECT p.id, p.nome, p.descricao, p.status, p.imagem, p.codigo, u.nome AS nome_utilizador
-          FROM projetos_arduino p
-          LEFT JOIN usuarios u ON p.autor = u.id
-          WHERE p.status='verificado' OR (p.status != 'verificado' AND p.autor = $meuID)
-          ORDER BY p.id";
+  FROM projetos_arduino p
+  LEFT JOIN usuarios u ON p.autor = u.id
+  WHERE ";
+
+  if ($filtro === 'verificado') {
+    $sql .= "p.status = 'verificado'";
+  } elseif ($filtro === 'pendente') {
+    $sql .= "p.status != 'verificado' AND p.autor = $meuID";
+  } elseif ($filtro === 'expirado') {
+    $sql .= "p.prazo_edicao < NOW()"; // Ajuste para a data de expiração
+  } else {
+    $sql .= "p.status = 'verificado'";
+  }
+
+  $sql .= " AND (p.nome LIKE '%$search%' OR p.descricao LIKE '%$search%')
+  ORDER BY p.id";
+
   $result = mysqli_query($conn, $sql);
 
   if (!$result || mysqli_num_rows($result) == 0) {
-    return 0;
+    echo "Nenhum projeto encontrado.";
+    return;
   }
 
   while ($row = mysqli_fetch_assoc($result)) {
@@ -42,7 +64,7 @@ function getProjetos($conn)
             <img src='./imagens/$img'>
             <br>
             <h3><p class=$status>Status: " . ucfirst($status) . "</p></h3>
-            <p>Criado por : $nomeUtilizador</p>
+            <p>Criado por: $nomeUtilizador</p>
             <br>
             <center>
               <a class='texto' href='projeto.php?id=$id'>Ver Mais</a>
@@ -50,8 +72,6 @@ function getProjetos($conn)
           </div>";
   }
 }
-
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -247,6 +267,7 @@ function getProjetos($conn)
   </header>
 
   <main>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
@@ -320,11 +341,65 @@ function getProjetos($conn)
         color: white;
         background-color: rgba(255, 255, 255, 0.25);
       }
+      .formT {
+    position: absolute;
+    margin-top: 150px;
+    margin-left: 5px;
+}
+
+      /* Estilo para o campo de pesquisa */
+.formT input[type="text"] {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 300px;
+    margin-right: 10px;
+}
+
+/* Estilo para o botão de pesquisa */
+.formT button[type="submit"] {
+    background-color: #0074E4;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-left: 10px; /* Adicione esta linha para a margem vertical */
+}
+
+
+/* Estilo para o botão de pesquisa quando hover (mouse sobre ele) */
+.formT button[type="submit"]:hover {
+    background-color: #0056A3; /* Cor mais escura ao passar o mouse */
+}
+.formT select {
+    background-color: #0074E4;
+    color: white;
+    border: none;
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
     </style>
     </head>
 
     <body>
-      <div class="wrapper">
+      
+    <form method="post" class="formT">
+  <input type="text" name="search" placeholder="Pesquisar projetos">
+  <select name="filtro">
+    <option value="verificado" <?php if (isset($_POST['filtro']) && $_POST['filtro'] === 'verificado') echo 'selected'; ?>>Verificados</option>
+    <option value="pendente" <?php if (isset($_POST['filtro']) && $_POST['filtro'] === 'pendente') echo 'selected'; ?>>Pendentes</option>
+    <option value="expirado" <?php if (isset($_POST['filtro']) && $_POST['filtro'] === 'expirado') echo 'selected'; ?>>Expirados</option>
+  </select>
+  <button type="submit">Pesquisar</button>
+</form>
+
+
+
+      <br>
+      <div class="wrapper"> 
         <?php
         getProjetos($conn);
         ?>

@@ -1,9 +1,7 @@
-<?php
 
-include("./verificaradm.php");
 
-?>
 <?php
+session_start();
 // Configurações do banco de dados
 $servername = "localhost";
 $username = "id20757658_miguelgaitas";
@@ -23,7 +21,7 @@ $imagem = $_FILES['imagem']['name'];
 $codigo = $_POST['codigo'];
 $sim = $_POST['simula'];
 // Move a imagem para um diretório do servidor
-$targetDir = ".\imagens";
+$targetDir = "./imagens/";
 $targetFile = $targetDir . basename($_FILES['imagem']['name']);
 if (move_uploaded_file($_FILES['imagem']['tmp_name'], $targetFile)) {
   echo "Imagem enviada com sucesso!<br>";
@@ -31,8 +29,8 @@ if (move_uploaded_file($_FILES['imagem']['tmp_name'], $targetFile)) {
   echo "Erro ao enviar a imagem.<br>";
 }
 
-// Insere os dados na tabela do banco de dados
-$sql = "INSERT INTO projetos_arduino (nome, descricao, imagem, codigo, simula) VALUES ('$nome', '$descricao', '$imagem', '$codigo', '$sim')";
+$meuID = $_SESSION['id_usuario'];
+$sql = "INSERT INTO projetos_arduino (autor, nome, descricao, imagem, codigo, simula) VALUES ('$meuID', '$nome', '$descricao', '$imagem', '$codigo', '$sim')";
 
 if ($conn->query($sql) === TRUE) {
   echo "Projeto adicionado com sucesso!";

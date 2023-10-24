@@ -23,7 +23,69 @@ $result = $conn->query($sql);
 <html>
 <head>
     <title>Projetos Pendentes</title>
-    <!-- Adicione seus estilos CSS aqui -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        li {
+            background-color: #fff;
+            margin: 10px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: calc(33.33% - 20px);
+            box-sizing: border-box;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        p {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .admin-button {
+            text-align: center;
+            margin: 20px;
+        }
+
+        .admin-button a {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .admin-button a:hover {
+            background-color: #555;
+        }
+    </style>
 </head>
 <body>
     <h1>Projetos Pendentes para Verificação</h1>
@@ -48,6 +110,9 @@ $result = $conn->query($sql);
         }
         ?>
     </ul>
+    <div class="admin-button">
+        <a href="pagina_de_admin.php">Página de Administração</a>
+    </div>
 </body>
 </html>
 

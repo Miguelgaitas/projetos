@@ -68,44 +68,46 @@ $dbname = "id20757658_dados_dos_registros";
 // Conecta ao banco de dados
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
-  die("Falha na conexão com o banco de dados: " . $conn->connect_error);
+    die("Falha na conexão com o banco de dados: " . $conn->connect_error);
 }
+
 // Verifica se o ID do projeto foi passado como parâmetro
-if(isset($_GET['id'])) {
-  $projetoId = $_GET['id'];
+if (isset($_GET['id'])) {
+    $projetoId = $_GET['id'];
 
-  // Consulta o projeto com base no ID
-  $sql = "SELECT * FROM projetos_arduino WHERE id = $projetoId";
-  $result = $conn->query($sql);
+    // Consulta o projeto com base no ID
+    $sql = "SELECT * FROM projetos_arduino WHERE id = $projetoId";
+    $result = $conn->query($sql);
 
-  if ($result->num_rows == 1) {
-    $row = $result->fetch_assoc();
+    if ($result->num_rows == 1) {
+        $row = $result->fetch_assoc();
 
-    // Exibe o formulário de edição preenchido com os dados do projeto
-    echo "<h2>Editar Projeto</h2>";
-    echo "<form action='atualizar_projeto_comunitario.php' method='POST' enctype='multipart/form-data'>";
-    echo "<input type='hidden' name='projetoId' value='".$row['id']."'>";
-    echo "<label for='nome'>Nome do Projeto:</label>";
-    echo "<input type='text' id='nome' name='nome' value='".$row['nome']."' required><br><br>";
-    echo "<label for='descricao'>Descrição:</label><br>";
-    echo "<textarea id='descricao' name='descricao' required>".$row['descricao']."</textarea><br><br>";
-    echo "<label for='imagem'>Imagem:</label>";
-    echo "<input type='file' id='imagem' name='imagem'><br><br>";
-    echo "<label for='codigo'>Código:</label><br>";
-    echo "<textarea id='codigo' name='codigo' required>".$row['codigo']."</textarea><br><br>";
-    echo "<label for='simula'>simulaçao:</label><br>";
-    echo "<textarea id='simula' name='simula' required>".$row['simula']."</textarea><br><br>";
-    echo "<input type='submit' value='Atualizar Projeto'>";
-    echo "</form>";
-  } else {
-    echo "Projeto não encontrado.";
-  }
+        // Exibe o formulário de edição preenchido com os dados do projeto
+        echo "<h2>Editar Projeto</h2>";
+        echo "<form action='atualizar_projeto_comunitario.php' method='POST' enctype='multipart/form-data'>";
+        echo "<input type='hidden' name='projetoId' value='" . $row['id'] . "'>";
+        echo "<label for='nome'>Nome do Projeto:</label>";
+        echo "<input type='text' id='nome' name='nome' value='" . $row['nome'] . "' required><br><br>";
+        echo "<label for='descricao'>Descrição:</label><br>";
+        echo "<textarea id='descricao' name='descricao' required>" . $row['descricao'] . "</textarea><br><br>";
+        echo "<label for='imagem'>Imagem:</label>";
+        echo "<input type='file' id='imagem' name='imagem'><br><br>";
+        echo "<label for='codigo'>Código:</label><br>";
+        echo "<textarea id='codigo' name='codigo' required>" . $row['codigo'] . "</textarea><br><br>";
+        echo "<label for='simula'>simulação:</label><br>";
+        echo "<textarea id='simula' name='simula' required>" . $row['simula'] . "</textarea><br><br>";
+        echo "<input type='submit' value='Atualizar Projeto'>";
+        echo "</form>";
+    } else {
+        echo "Projeto não encontrado.";
+    }
 } else {
-  echo "ID do projeto não fornecido.";
+    echo "ID do projeto não fornecido.";
 }
 ?>
+
 <br><br>
-<a href="pagina_de_admin.php" style="text-decoration: none;">
+<a href="pagina1.php" style="text-decoration: none;">
     <button type="button">Voltar</button>
 </body>
 </html>
