@@ -9,11 +9,140 @@ include("./verificaradm.php");
 <head>
 <link rel="icon" href="./imagens/favicon-32x32.png">
 	<title>Gerenciamento de Produtos</title>
-	<link rel="stylesheet" type="text/css" href="adminprodutos.css">
+	<style>
+	body {
+    font-family: 'poppins', sans-serif;
+    background: url('https://i.pinimg.com/originals/09/64/a7/0964a7c66f449a148686bc265eaeaec8.jpg') repeat;
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 80%;
+    max-width: 800px;
+    margin: 20px auto;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.btn {
+	width: 95%;
+    display: block;
+    margin-bottom: 20px;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #162938;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    background-color: #fff;
+    color: #162938;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #162938;
+    color: #fff;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* Estilos para o formulário de pesquisa */
+.search-form {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.search-form input {
+    padding: 10px;
+    width: 60%;
+    border: 2px solid #162938;
+    border-radius: 5px;
+    outline: none;
+    font-size: 1em;
+    color: #162938;
+}
+
+.search-form button {
+    padding: 10px 20px;
+    background-color: #162938;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-form button:hover {
+    background-color: #fff;
+    color: #162938;
+}
+form {
+    margin-bottom: 20px;
+}
+
+form label {
+    display: block;
+    margin-top: 10px;
+}
+
+form input,
+form textarea {
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 2px solid #162938;
+    border-radius: 5px;
+    outline: none;
+    font-size: 1em;
+    color: #162938;
+}
+
+form input[type="submit"] {
+    background-color: #162938;
+    color: #fff;
+    cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+    background-color: #fff;
+    color: #162938;
+}
+</style>
+
 </head>
 <body>
 	<div class="container">
-		<h1>Gerenciamento de Produtos</h1>
+		<h1>Gestão de Produtos</h1>
 		<a href="pagina_de_admin.php" class="btn">Voltar</a>
 
 		<h2>Adicionar Produto</h2>

@@ -27,7 +27,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url('https://img.freepik.com/free-vector/gradient-network-connection-background_23-2148865393.jpg')no-repeat;
+    background: url('https://i.pinimg.com/originals/09/64/a7/0964a7c66f449a148686bc265eaeaec8.jpg')repeat;
     background-size: cover;
     background-position: center;
 }
@@ -329,11 +329,11 @@ footer {
 				style="width: 148px; height: auto;">
 		</h2>
 		<nav class="navigation">
-			<a href="primeira_pagina.php">Home</a>
+			<a href="primeira_pagina.php">Pagína inicial</a>
 			<a href="pagina1.php">Projetos</a>
-			<a href="pagina2.php">Produtos</a>
+			<a href="pagina2.php">Top 5 Componentes</a>
 			<a href="pagina3.php">Lojas</a>
-			<a href="contact.php">Contact</a>
+			<a href="contact.php">Contacto</a>
 
 			<button onclick="window.location.href= './detalhesconta.php';" class="btnlogin-popup">Conta</button>
 			</a>
@@ -358,7 +358,7 @@ footer {
     </main>
     
 
-
+ 
     <script>
         function toggleAnswers(questionId) {
             var answersDiv = document.getElementById("answers-" + questionId);

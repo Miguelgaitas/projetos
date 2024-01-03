@@ -19,3 +19,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['id_usuario'])) {
     echo "Você não está logado ou não enviou uma pergunta válida.";
 }
 ?>
+ 

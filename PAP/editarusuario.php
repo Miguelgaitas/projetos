@@ -53,16 +53,81 @@ mysqli_close($conn);
 <head>
 <link rel="icon" href="./imagens/favicon-32x32.png">
     <title>Editar Usuário</title>
-    <link rel="stylesheet" type="text/css" href="adminusuarios.css">
+    <style>
+    body {
+        font-family: 'poppins', sans-serif;
+        background: url('https://i.pinimg.com/originals/09/64/a7/0964a7c66f449a148686bc265eaeaec8.jpg') repeat;
+        background-size: cover;
+        background-position: center;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .container {
+        width: 80%;
+        max-width: 400px;
+        margin: 20px auto;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    form {
+        text-align: center;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 10px;
+        color: #162938;
+    }
+
+    input {
+        width: 80%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 2px solid #162938;
+        border-radius: 5px;
+        outline: none;
+        font-size: 1em;
+        color: #162938;
+    }
+
+    input[type="submit"] {
+        background-color: #162938;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #fff;
+        color: #162938;
+    }
+</style>
+
 </head>
 <body>
     <div class="container">
-        <h1>Editar Usuário</h1>
+        <h1>Editar Utilizador</h1>
         <form method="post">
-            <label for="nome">Nome:</label>
+            <label for="nome">Nome :</label>
             <input type="text" name="nome" value="<?php echo $linha['nome']; ?>"><br>
 
-            <label for="email">E-mail:</label>
+            <label for="email">E-mail :</label>
             <input type="email" name="email" value="<?php echo $linha['email']; ?>"><br>
 
             <input type="submit" value="Salvar">

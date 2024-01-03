@@ -9,7 +9,83 @@ include("./verificaradm.php");
 <head>
 <link rel="icon" href="./imagens/favicon-32x32.png">
 	<title>Editar Produto</title>
-	<link rel="stylesheet" type="text/css" href="adminprodutos.css">
+	<style>
+	body {
+    font-family: 'Poppins', sans-serif;
+    background: url('https://i.pinimg.com/originals/09/64/a7/0964a7c66f449a148686bc265eaeaec8.jpg') repeat;
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 80%;
+    max-width: 800px;
+    margin: 20px auto;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.btn {
+    display: block;
+    margin-bottom: 20px;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #162938;
+    color: #fff;
+    border-radius: 5px;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+form label {
+    display: block;
+    margin-top: 10px;
+}
+
+form input,
+form textarea {
+    width: 97%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 2px solid #162938;
+    border-radius: 5px;
+    outline: none;
+    font-size: 1em;
+    color: #162938;
+}
+
+form input[type="number"] {
+    width: calc(100% - 22px); /* Ajuste para a largura do campo de número */
+}
+
+form input[type="submit"] {
+    background-color: #162938;
+    color: #fff;
+    cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+    background-color: #fff;
+    color: #162938;
+}
+</style>
 </head>
 <body>
 	<?php
@@ -61,7 +137,7 @@ include("./verificaradm.php");
 
 	<div class="container">
 		<h1>Editar Produto</h1>
-        <a href="produtos.php" style="background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none;">Voltar</a>
+        <a href="produtos.php" class="btn">Voltar</a>
 
 
 		<form method="post">
@@ -74,7 +150,7 @@ include("./verificaradm.php");
 			<label for="preco">Preço:</label>
 			<input type="number" id="preco" name="preco" step="0.01" value="<?php echo $linha['preco']; ?>">
 
-			<label for="quantidade_em_stock">Quantidade em Estoque:</label>
+			<label for="quantidade_em_stock">Quantidade em stock:</label>
 			<input type="number" id="quantidade_em_stock" name="quantidade_em_stock" value="<?php echo $linha['quantidade_em_stock']; ?>">
 
 			<label for="link">Link:</label>

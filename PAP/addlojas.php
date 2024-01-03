@@ -1,268 +1,200 @@
-<?php
-
-
-include("./verificaradm.php");
-
-?> 
- <!DOCTYPE html>
+<?php include("./verificaradm.php"); ?> 
+<!DOCTYPE html>
 <html>
 <head>
-<link rel="icon" href="./imagens/favicon-32x32.png">
-	<title>Adicionar loja</title>
+    <link rel="icon" href="./imagens/favicon-32x32.png">
+    <title>Adicionar loja</title>
+    <style>
+        /* Definições gerais */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: url('https://i.pinimg.com/originals/09/64/a7/0964a7c66f449a148686bc265eaeaec8.jpg') repeat;
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 800px;
+            margin: 20px auto;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            width: 95%;
+            display: block;
+            margin-bottom: 20px;
+            text-align: center;
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #162938;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background-color: #fff;
+            color: #162938;
+        }
+
+        /* Estilo para o formulário de adição de loja */
+        form {
+            margin-bottom: 20px;
+        }
+
+        form label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        form input,
+        form textarea {
+            width: 95%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 2px solid #162938;
+            border-radius: 5px;
+            outline: none;
+            font-size: 1em;
+            color: #162938;
+        }
+
+        form input[type="submit"] {
+            background-color: #162938;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        form input[type="submit"]:hover {
+            background-color: #fff;
+            color: #162938;
+        }
+        /* Estilo para as tabelas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #162938;
+    color: #fff;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+input[type="checkbox"] {
+    margin-right: 8px; /* Ajuste a margem conforme necessário para posicionar a caixa de seleção */
+}
+    </style>
 </head>
 <body>
-	<h1>Adicionar loja</h1>
-    <a href="pagina_de_admin.php" class="btn-voltar">Voltar para a admin page</a>
-<!-- HTML -->
-<form method="post" action="adicionar_loja.php">
-  <label for="nome">Nome da loja:</label>
-  <input type="text" name="nome" id="nome"><br>
-  
-  <label for="endereco">Endereço:</label>
-  <input type="text" name="endereco" id="endereco"><br>
-  
-  <label for="cidade">Cidade:</label>
-  <input type="text" name="cidade" id="cidade"><br>
-  
-  <label for="codigo_postal">Código postal:</label>
-  <input type="text" name="codigo_postal" id="codigo_postal"><br>
-  
-  <label for="telefone">Telefone:</label>
-  <input type="text" name="telefone" id="telefone"><br>
-  
-  <h2>Produtos disponíveis:</h2>
+    <div class="container">
+        <h1>Adicionar loja</h1>
+        <a href="pagina_de_admin.php" class="btn">Voltar para a página de administração</a>
+
+        <!-- Formulário de adição de loja -->
+        <form method="post" action="adicionar_loja.php">
+            <label for="nome">Nome da loja:</label>
+            <input type="text" name="nome" id="nome"><br>
+
+            <label for="endereco">Morada:</label>
+            <input type="text" name="endereco" id="endereco"><br>
+
+            <label for="cidade">Cidade:</label>
+            <input type="text" name="cidade" id="cidade"><br>
+
+            <label for="codigo_postal">Código postal:</label>
+            <input type="text" name="codigo_postal" id="codigo_postal"><br>
+
+            <label for="telefone">Telefone:</label>
+            <input type="text" name="telefone" id="telefone"><br>
+            <h1>Lista de lojas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Endereço</th>
+      <th>Cidade</th>
+      <th>Código postal</th>
+      <th>Telefone</th>
+      <th>Produtos disponíveis</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
   <?php
-    // Conectar ao banco de dados
-    $conexao = mysqli_connect("localhost", "id20757658_miguelgaitas", "MiguelGaitas24.", "id20757658_dados_dos_registros");
-    
-    // Selecionar todos os produtos
-    $query = "SELECT * FROM produtos";
-    $resultado = mysqli_query($conexao, $query);
-    
-    // Exibir checkboxes para cada produto
-    while ($produto = mysqli_fetch_assoc($resultado)) {
-      echo '<label>';
-      echo '<input type="checkbox" name="produtos[]" value="' . $produto['id'] . '"> ';
-      echo $produto['nome'] . ' - €' . number_format($produto['preco'], 2, ',', '.');
-      echo '</label><br>';
+// Conectar ao banco de dados
+$conexao = mysqli_connect("localhost", "id20757658_miguelgaitas", "MiguelGaitas24.", "id20757658_dados_dos_registros");
+
+// Verificar a conexão
+if (!$conexao) {
+    die("A conexão falhou: " . mysqli_connect_error());
+}
+
+// Selecionar todas as lojas
+$query = "SELECT * FROM lojas";
+$resultado = mysqli_query($conexao, $query);
+
+// Exibir as informações de cada loja
+while ($loja = mysqli_fetch_assoc($resultado)) {
+    echo '<tr>';
+    echo '<td>' . $loja['nome'] . '</td>';
+    echo '<td>' . $loja['endereco'] . '</td>';
+    echo '<td>' . $loja['cidade'] . '</td>';
+    echo '<td>' . $loja['codigo_postal'] . '</td>';
+    echo '<td>' . $loja['telefone'] . '</td>';
+    echo '<td>';
+    // Selecionar os componentes disponíveis na loja atual
+    $query_componentes = "SELECT componentes.nome FROM componentes INNER JOIN loja_componente ON componentes.id = loja_componente.componente_id WHERE loja_componente.loja_id = " . $loja['id'];
+    $resultado_componentes = mysqli_query($conexao, $query_componentes);
+    // Exibir os nomes dos componentes separados por vírgula
+    while ($componente = mysqli_fetch_assoc($resultado_componentes)) {
+        echo $componente['nome'] . ', ';
     }
-  ?>
-  
-  <input type="submit" value="Adicionar loja">
-</form>
-<style> 
-/* Definições gerais */
-body {
-  font-family: Arial, sans-serif;
-  font-size: 16px;
-  color: #333;
-  margin: 0;
-  padding: 0;
+    echo '</td>';
+    echo '<td><a href="editar_loja.php?id=' . $loja['id'] . '">Editar</a></td>';
+    echo '</tr>';
 }
 
-/* Estilo do cabeçalho */
-header {
-  background-color: #006699;
-  color: #fff;
-  padding: 20px;
-}
+// Fechar a conexão com o banco de dados
+mysqli_close($conexao);
+?>
 
-header h1 {
-  margin: 0;
-}
+              
 
-/* Estilo do menu */
-nav {
-  background-color: #eee;
-  padding: 10px;
-  margin-bottom: 20px;
-}
-
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-nav li {
-  display: inline-block;
-  margin-right: 10px;
-}
-
-nav a {
-  display: block;
-  padding: 10px;
-  text-decoration: none;
-  color: #333;
-}
-
-nav a:hover {
-  background-color: #ddd;
-}
-
-/* Estilo do conteúdo */
-section {
-  margin: 20px;
-}
-
-section h2 {
-  font-size: 24px;
-  margin: 0 0 20px;
-}
-
-/* Estilo do formulário */
-form {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-form label {
-  display: block;
-  margin-bottom: 10px;
-  font-weight: bold;
-}
-
-form input[type="text"],
-form input[type="email"],
-form textarea {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  margin-bottom: 20px;
-  font-size: 16px;
-}
-
-form textarea {
-  height: 200px;
-}
-
-form input[type="submit"] {
-  background-color: #006699;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-form input[type="submit"]:hover {
-  background-color: #004466;
-}
-
-/* Estilo das tabelas */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
-}
-
-table th,
-table td {
-  padding: 10px;
-  border: 1px solid #ccc;
-}
-
-table th {
-  background-color: #eee;
-  font-weight: bold;
-  text-align: left;
-}
-
-/* Estilo das mensagens de erro e sucesso */
-.message {
-  padding: 10px;
-  margin-bottom: 20px;
-  border-radius: 3px;
-  font-weight: bold;
-}
-
-.message.error {
-  background-color: #ffcccc;
-  color: #990000;
-}
-
-.message.success {
-  background-color: #ccffcc;
-  color: #006600;
-}
-.btn-voltar {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background-color: #007bff;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.btn-voltar:hover {
-  background-color: #0062cc;
-}
-
-
-
-</style>
-
-<h1>Lista de lojas</h1>
-
-	<table>
-		<thead>
-			<tr>
-				<th>Nome</th>
-				<th>Endereço</th>
-				<th>Cidade</th>
-				<th>Código postal</th>
-				<th>Telefone</th>
-				<th>Produtos disponíveis</th>
-				<th>Ações</th>
-			</tr>
-		</thead>
-		<tbody>
-			<?php
-				// Conectar ao banco de dados
-				$conexao = mysqli_connect("localhost", "id20757658_miguelgaitas", "MiguelGaitas24.", "id20757658_dados_dos_registros");
-
-				// Selecionar todas as lojas
-				$query = "SELECT * FROM lojas";
-				$resultado = mysqli_query($conexao, $query);
-
-				// Exibir as informações de cada loja
-				while ($loja = mysqli_fetch_assoc($resultado)) {
-					echo '<tr>';
-					echo '<td>' . $loja['nome'] . '</td>';
-					echo '<td>' . $loja['endereco'] . '</td>';
-					echo '<td>' . $loja['cidade'] . '</td>';
-					echo '<td>' . $loja['codigo_postal'] . '</td>';
-					echo '<td>' . $loja['telefone'] . '</td>';
-					echo '<td>';
-					// Selecionar os produtos disponíveis na loja atual
-					$query_produtos = "SELECT produtos.nome FROM produtos INNER JOIN lojas_produtos ON produtos.id = lojas_produtos.produto_id WHERE lojas_produtos.loja_id = " . $loja['id'];
-					$resultado_produtos = mysqli_query($conexao, $query_produtos);
-					// Exibir os nomes dos produtos separados por vírgula
-					while ($produto = mysqli_fetch_assoc($resultado_produtos)) {
-						echo $produto['nome'] . ', ';
-					}
-					echo '</td>';
-					echo '<td><a href="editar_loja.php?id=' . $loja['id'] . '">Editar</a></td>';
-					echo '</tr>';
-				}
-
-				// Fechar a conexão com o banco de dados
-				mysqli_close($conexao);
-			?>
-                
-
-		</tbody>
-	</table>
-    
-</body>
-</html>
-
+  </tbody>
+</table>
+            <br>
+            <input type="submit" value="Adicionar loja">
+        </form>
+    </div>
 </body>
 </html>

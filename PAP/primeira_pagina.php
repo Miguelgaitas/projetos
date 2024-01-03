@@ -45,7 +45,7 @@
 			justify-content: center;
 			align-items: center;
 			min-height: 100vh;
-			background: url('https://1.bp.blogspot.com/--zWQNJ5Dfn0/YD0x_lCU84I/AAAAAAAAgRA/z1FKf-PARvQz8k8KAT5MV7tE5-qe04hxACLcBGAsYHQ/s1920-rw/v2-DARK-HEXAGONAL-PATTERN-HD.png')no-repeat;
+			background: url('https://i.pinimg.com/originals/09/64/a7/0964a7c66f449a148686bc265eaeaec8.jpg')repeat;
 			background-size: cover;
 			background-position: center;
 		}
@@ -225,16 +225,16 @@
 		</h2>
 		<nav class="navigation">
 			<a href="pagina1.php">Projetos</a>
-			<a href="pagina2.php">Produtos</a>
+			<a href="pagina2.php">Top 5 Componentes</a>
 			<a href="pagina3.php">Lojas</a>
 			<a href="perguntas_e_respostas.php">Forum</a>
-			<a href="contact.php">Contact</a>
+			<a href="contact.php">Contacto</a>
 			<button onclick="window.location.href= './detalhesconta.php';" class="btnlogin-popup">Conta</button>
 			</a>
 		</nav>
 	</header>
 		<div class="container">
-			<h1>Arduino: Uma plataforma versátil para projetos eletrônicos interativos</h1><br><br>
+			<h1>Arduino: Uma plataforma versátil para projetos eletrónicos interativos</h1><br><br>
 			<p>
 
 				O Arduino é uma plataforma de prototipagem eletrônica de código aberto que permite programar

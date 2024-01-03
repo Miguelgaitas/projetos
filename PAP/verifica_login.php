@@ -32,7 +32,7 @@ if (mysqli_num_rows($resultado) == 1) {
         if ($linha['admin'] == 1) {
             $_SESSION['isAdmin'] = true;
             $mensagem = "Login bem-sucedido! Esta conta é de admin";
-            $redirecionarPara = "pagina_de_admin.php";
+            $redirecionarPara = "primeira_pagina.php";
         } else {
             $_SESSION['isAdmin'] = false;
             $redirecionarPara = "primeira_pagina.php"; 

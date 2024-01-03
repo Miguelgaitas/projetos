@@ -32,7 +32,7 @@ if (isset($_SESSION['id_usuario'])) {
 
     <head>
       <link rel="icon" href="./imagens/favicon-32x32.png">
-      <title>Detalhes do Usuário</title>
+      <title>Detalhes do Utilizador</title>
       <style>
         /*The eye icon on the password can be stylize with any tool you want
             to use (the only way i know to do this correctly is using JS)
@@ -53,7 +53,7 @@ if (isset($_SESSION['id_usuario'])) {
           flex-direction: column;
           align-items: center;
           min-height: 100vh;
-          background: url('https://bo3.onlinebiz.pt/lfmpro/_files/lfmpro-1-1599125599.jpg')no-repeat;
+        background-color: black;
           background-size: cover;
           background-position: center;
         }
@@ -290,7 +290,55 @@ h2{
         <div class="btned">
         <button class="edit-btn" onclick="window.location.href='editar_detalhes.php'">Editar informações</button>
         
-        <button class="edit-btn" onclick="window.location.href='primeira_pagina.php'">Voltar para o home</button>
+        <button class="edit-btn" onclick="window.location.href='primeira_pagina.php'">Voltar para a pagina inicial</buttaon>
+
+        <?php
+// Configurações do banco de dados
+$servername = "localhost";
+$username = "id20757658_miguelgaitas";
+$password = "MiguelGaitas24.";
+$dbname = "id20757658_dados_dos_registros";
+
+// Cria a conexão com o banco de dados
+$conexao = new mysqli($servername, $username, $password, $dbname);
+
+// Verifica a conexão com o banco de dados
+if ($conexao->connect_error) {
+    die("Erro na conexão com o banco de dados: " . $conexao->connect_error);
+}
+
+// Função para verificar se o usuário é administrador
+function isAdmin($conexao, $id_usuario) {
+    // Substitua isso pela lógica real de verificação no lado do servidor
+    $consulta = "SELECT admin FROM usuarios WHERE id = $id_usuario";
+    $resultado = $conexao->query($consulta);
+
+    if ($resultado) {
+        $usuarioAtual = $resultado->fetch_assoc();
+        return $usuarioAtual['admin'] == 1;
+    } else {
+        die("Erro na consulta: " . $conexao->error);
+    }
+}
+
+// Substitua isso pela lógica real para obter o ID do usuário autenticado em sua aplicação
+// Exemplo: você pode estar usando uma variável de sessão para armazenar o ID do usuário após o login.
+$id_usuario_autenticado = $_SESSION['id_usuario']; // Certifique-se de iniciar a sessão antes de acessar $_SESSION.
+
+// Se o usuário for um administrador, exibe o botão e redireciona para a página de administração ao clicar
+if (isAdmin($conexao, $id_usuario_autenticado)) {
+    echo '<button id="adminButton" onclick="redirectAdmin()" class="edit-btn">Administração</button>';
+    echo '<script>
+            function redirectAdmin() {
+                window.location.href = "pagina_de_admin.php"; // Substitua pelo caminho real da página de administração
+            }
+          </script>';
+}
+
+// Fecha a conexão com o banco de dados
+$conexao->close();
+?>
+
       
         <button class="edit-btn" onclick="window.location.href='index.html'">Logout</button>
         </div>

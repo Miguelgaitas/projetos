@@ -105,9 +105,9 @@ if (mysqli_num_rows($resultado) == 1) {
     <center>
     <p><img src='http://localhost/PAP/imagens/Capturar-removebg-preview.png' alt='Logo' class='logo-image' style='width: 160px; height: auto;'></p>
         <p>Olá $nomeUsuario,</p>
-        <p>Você solicitou uma redefinição de senha. Clique no link abaixo para redefinir sua senha:</p>
+        <p>Recebeu um pedido para redefinir a sua senha. Clique no link abaixo para redefinir a sua senha</p>
         <p><a class='reset-link' href='http://localhost/PAP/reset_password.php?token=$token'>Redefinir Senha</a></p>
-        <p>Se você não solicitou esta redefinição, ignore este e-mail.</p>
+        <p>Se não pediu esta reposição, por favor, ignore este e-mail</p>
         </center>
     </body>
     </html>";

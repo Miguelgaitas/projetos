@@ -15,9 +15,13 @@ if (!$conn) {
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
+    // Exclui os projetos associados a este usuário
+    $sql_delete_projetos = "DELETE FROM projetos_arduino WHERE autor = $id";
+    mysqli_query($conn, $sql_delete_projetos);
+
     // Exclui o usuário da base de dados
-    $sql = "DELETE FROM usuarios WHERE id = $id";
-    mysqli_query($conn, $sql);
+    $sql_delete_usuario = "DELETE FROM usuarios WHERE id = $id";
+    mysqli_query($conn, $sql_delete_usuario);
 
     // Redireciona de volta para a página de gerenciamento de usuários
     header("Location: adminusuarios.php");

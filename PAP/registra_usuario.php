@@ -28,7 +28,7 @@ if (mysqli_num_rows($resultadoVerificar) > 0) {
     mysqli_close($conn);
 
     // Redirecionar para a página de registro com a mensagem de e-mail já registrado
-    $mensagem = "Este e-mail já está registrado.";
+    $mensagem = "Este e-mail já está registado.";
     $redirecionarPara = "registro.php?mensagem=" . urlencode($mensagem);
 
     header("Location: $redirecionarPara");
@@ -148,7 +148,7 @@ if (mysqli_num_rows($resultadoVerificar) > 0) {
         header("Location: $redirecionarPara");
         exit;
     } else {
-        echo "Erro ao registrar o usuário: " . mysqli_error($conn);
+        echo "Erro ao registar o Utilizador: " . mysqli_error($conn);
     }
 }
 ?>

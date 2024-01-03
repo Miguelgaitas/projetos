@@ -77,7 +77,7 @@ if (isset($_GET['id'])) {
         }
 
         body {
-            background-image: url(https://www.wallpapertip.com/wmimgs/34-343249_python-arduino.jpg);
+            background-image: url(https://i.pinimg.com/originals/09/64/a7/0964a7c66f449a148686bc265eaeaec8.jpg);
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;

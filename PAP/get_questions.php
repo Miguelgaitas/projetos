@@ -8,7 +8,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     echo "<div class='question'>";
     echo"<h2>Titulo da pergunta :</h2>";
     echo "<p>" . $row['titulo'] . "<p>";
-    echo"<h2>Conteodo da pergunta :</h2>";
+    echo"<h2>Conteúdo da pergunta :</h2>";
     
     echo "<p>" . $row['pergunta'] . "</p>";
     echo "<br>";
@@ -48,3 +48,4 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 mysqli_close($conn);
 ?>
+ 

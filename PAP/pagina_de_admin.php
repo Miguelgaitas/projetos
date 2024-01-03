@@ -8,6 +8,7 @@ include("./verificaradm.php");
 <html lang="pt">
 
 <head>
+<link rel="icon" href="./imagens/favicon-32x32.png">
 	<meta charset="UTF-8">
 	<title>Dashboard</title>
 	<style>
@@ -23,7 +24,7 @@ include("./verificaradm.php");
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url('https://static.vecteezy.com/system/resources/previews/006/430/145/original/technology-background-concept-circuit-board-electronic-system-futuristic-hi-tech-light-on-dark-blue-free-vector.jpg')no-repeat;
+    background: url('https://i.pinimg.com/originals/09/64/a7/0964a7c66f449a148686bc265eaeaec8.jpg')repeat;
     background-size: cover;
     background-position: center;
   } 
@@ -352,10 +353,9 @@ $conn->close();
 
 		<div class="button-container">
 		<button onclick="window.location.href='adminusuarios.php'" class="btn">Utilizadores</button><br><br>
-<button onclick="window.location.href='produtos.php'" class="btn">Produtos</button><br><br>
+<button onclick="window.location.href='adicionar_componente.php'" class="btn">Componentes</button><br><br>
 <button onclick="window.location.href='addlojas.php'" class="btn">Lojas</button><br><br>
 <button onclick="window.location.href='addprojetosarduino.php'" class="btn">Projetos Arduino</button><br><br>
-<button onclick="window.location.href='primeira_pagina.php'" class="btn">Home page</button><br><br>
 <button onclick="window.location.href='projetos_pendentes.php'" class="btn">Verificar Projetos</button><br><br>
 
 		</div>

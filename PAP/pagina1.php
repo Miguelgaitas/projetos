@@ -33,7 +33,7 @@ function getProjetos($conn)
   if ($filtro === 'verificado') {
     $sql .= "p.status = 'verificado'";
   } elseif ($filtro === 'pendente') {
-    $sql .= "p.status != 'verificado' AND p.autor = $meuID";
+    $sql .= "p.status != 'verificado' AND (p.status != 'rejeitado' OR p.prazo_edicao >= NOW()) AND p.autor = $meuID";
   } elseif ($filtro === 'expirado') {
     $sql .= "p.prazo_edicao < NOW()"; // Ajuste para a data de expiração
   } else {
@@ -78,7 +78,7 @@ function getProjetos($conn)
 
 <head>
   <link rel="icon" href="./imagens/favicon-32x32.png">
-  <title>Projeto adrduino Tres Musicas</title>
+  <title>Projeto Adrduino </title>
   <style>
     /* Estilo do cabeçalho */
     * {
@@ -257,9 +257,9 @@ function getProjetos($conn)
         style="width: 148px; height: auto;">
     </h2>
     <nav class="navigation">
-      <a href="primeira_pagina.php">Home</a>
+      <a href="primeira_pagina.php">Pagina inicial</a>
       <a href="addprojetoscomunitarios.php">Propor projeto</a>
-      <a href="contact.php">Contact</a>
+      <a href="contact.php">Contacto</a>
       <button onclick="window.location.href= './detalhesconta.php';" class="btnlogin-popup">Conta</button>
       </a>
 
@@ -267,13 +267,13 @@ function getProjetos($conn)
   </header>
 
   <main>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
       body {
-        background-image: url(https://www.shutterstock.com/image-vector/hardware-software-computer-technology-background-600w-2048513402.jpg);
+        background-image: url(https://i.pinimg.com/originals/09/64/a7/0964a7c66f449a148686bc265eaeaec8.jpg);
         background-repeat: repeat;
         background-size: cover;
         margin: 0;
@@ -341,65 +341,123 @@ function getProjetos($conn)
         color: white;
         background-color: rgba(255, 255, 255, 0.25);
       }
+
       .formT {
-    position: absolute;
-    margin-top: 150px;
-    margin-left: 5px;
+        position: absolute;
+        margin-top: 160px;
+        margin-left: 10px;
+      }
+
+      select {
+  background-color: red;
+  color: white; /* Cor do texto em branco para contraste */
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 16px;
 }
 
-      /* Estilo para o campo de pesquisa */
-.formT input[type="text"] {
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    width: 300px;
-    margin-right: 10px;
+/* Estilo para as opções dentro do select */
+ select option {
+  background-color: red;
+  color: white;
 }
 
-/* Estilo para o botão de pesquisa */
-.formT button[type="submit"] {
-    background-color: #0074E4;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    margin-left: 10px; /* Adicione esta linha para a margem vertical */
+/* Estilo para a seta do select (seta suspensa) */
+ select::-ms-expand {
+  display: none; /* Remove a seta no Internet Explorer */
+}
+
+select::-webkit-select-placeholder {
+  color: white; /* Cor do texto em branco para o placeholder */
 }
 
 
-/* Estilo para o botão de pesquisa quando hover (mouse sobre ele) */
-.formT button[type="submit"]:hover {
-    background-color: #0056A3; /* Cor mais escura ao passar o mouse */
-}
-.formT select {
-    background-color: #0074E4;
-    color: white;
-    border: none;
-    padding: 5px;
-    font-size: 16px;
-    border-radius: 5px;
-}
+      .input-container {
+        position: absolute;
+        display: flex;
+        align-items: center;
+      }
+
+      .input {
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+        border: none;
+        outline: none;
+        padding: 20px 25px;
+        background-color: transparent;
+        cursor: pointer;
+        transition: all .5s ease-in-out;
+      }
+
+      .input::placeholder {
+        color: transparent;
+      }
+
+      .input:focus::placeholder {
+        color: rgb(131, 128, 128);
+      }
+
+      .input:focus,
+      .input:not(:placeholder-shown) {
+        background-color: #fff;
+        border: 1px solid rgb(91, 107, 255);
+        width: 290px;
+        cursor: none;
+        padding: 18px 16px 18px 45px;
+      }
+
+      .icon {
+        position: absolute;
+        left: 0;
+        height: 45px;
+        width: 45px;
+        background-color: #fff;
+        border-radius: 99px;
+        z-index: -1;
+        fill: rgb(91, 107, 255);
+        border: 1px solid rgb(91, 107, 255);
+      }
+
+      .input:focus+.icon,
+      .input:not(:placeholder-shown)+.icon {
+        z-index: 0;
+        background-color: transparent;
+        border: none;
+      }
 
     </style>
     </head>
 
     <body>
-      
-    <form method="post" class="formT">
-  <input type="text" name="search" placeholder="Pesquisar projetos">
-  <select name="filtro">
+
+      <form method="post" class="formT">
+        <div class="input-container">
+          <input type="text" name="search" class="input" placeholder="Pesquisar projetos">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="" viewBox="0 0 24 24" class="icon">
+            <g stroke-width="0" id="SVGRepo_bgCarrier"></g>
+            <g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g>
+            <g id="SVGRepo_iconCarrier">
+              <rect fill="white" height="24" width="24"></rect>
+              <path fill=""
+                d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM9 11.5C9 10.1193 10.1193 9 11.5 9C12.8807 9 14 10.1193 14 11.5C14 12.8807 12.8807 14 11.5 14C10.1193 14 9 12.8807 9 11.5ZM11.5 7C9.01472 7 7 9.01472 7 11.5C7 13.9853 9.01472 16 11.5 16C12.3805 16 13.202 15.7471 13.8957 15.31L15.2929 16.7071C15.6834 17.0976 16.3166 17.0976 16.7071 16.7071C17.0976 16.3166 17.0976 15.6834 16.7071 15.2929L15.31 13.8957C15.7471 13.202 16 12.3805 16 11.5C16 9.01472 13.9853 7 11.5 7Z"
+                clip-rule="evenodd" fill-rule="evenodd"></path>
+            </g>
+          </svg>
+
+          <select name="filtro" id="filtro">
     <option value="verificado" <?php if (isset($_POST['filtro']) && $_POST['filtro'] === 'verificado') echo 'selected'; ?>>Verificados</option>
     <option value="pendente" <?php if (isset($_POST['filtro']) && $_POST['filtro'] === 'pendente') echo 'selected'; ?>>Pendentes</option>
     <option value="expirado" <?php if (isset($_POST['filtro']) && $_POST['filtro'] === 'expirado') echo 'selected'; ?>>Expirados</option>
-  </select>
-  <button type="submit">Pesquisar</button>
-</form>
+</select>
+        </div>
+      </form>
 
 
 
       <br>
-      <div class="wrapper"> 
+      <div class="wrapper">
         <?php
         getProjetos($conn);
         ?>
@@ -407,5 +465,22 @@ function getProjetos($conn)
       <button id="voltar-ao-topo" onclick="topFunction()">Voltar ao topo</button>
   </main>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Obtém o valor do filtro do PHP
+        var filtroPHP = "<?php echo isset($_POST['filtro']) ? $_POST['filtro'] : ''; ?>";
 
+        // Define automaticamente a opção com base no valor do filtro
+        if (filtroPHP !== '') {
+            $("#filtro").val(filtroPHP);
+        }
+
+        // Adiciona um ouvinte de mudança para enviar o formulário quando o filtro é alterado
+        $("#filtro").change(function () {
+            // Adicione mais ações se necessário
+            $(this).closest("form").submit();
+        });
+    });
+</script>
 </html>

@@ -9,94 +9,99 @@ $conn = mysqli_connect($host, $username, $password, $dbname);
 
 // Verifica se a conexão foi bem-sucedida
 if (!$conn) {
-    die("Falha na conexão com o banco de dados: " . mysqli_connect_error());
+	die("Falha na conexão com o banco de dados: " . mysqli_connect_error());
 }
 ?>
 
 <!DOCTYPE html>
 <html>
+
 <head>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<link rel="icon" href="./imagens/favicon-32x32.png">
-	<title>produtos</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<link rel="icon" href="./imagens/favicon-32x32.png">
+	<title>Componentes</title>
 	<style>
-		   @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-        body {
-            background-image: url(https://voenews.com.br/wp-content/uploads/2019/08/Berlengas-Island-_Centrode-Portugal.jpg);
-            background-repeat: repeat;
-            background-size: cover;
-            margin: 0;
-            padding: 0;
-            font-family: 'Poppins', sans-serif;
-        }
+		@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-        .wrapper {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            width: 100vw;
-            min-height: 100vh;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
+		body {
+			background-image: url(https://voenews.com.br/wp-content/uploads/2019/08/Berlengas-Island-_Centrode-Portugal.jpg);
+			background-repeat: repeat;
+			background-size: cover;
+			margin: 0;
+			padding: 0;
+			font-family: 'Poppins', sans-serif;
+		}
 
-        .projeto {
-            display: flex;
-            flex-direction: column;
-            border: 1px solid black;
-            border-radius: 15px;
-            overflow: hidden;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 15px;
-            margin: 10px;
-            width: 400px;
-            height: 500px;
-            background-color: rgba(0, 0, 0, 0.01);
-            backdrop-filter: blur(6px);
-        }
+		.wrapper {
+			margin: 0;
+			padding: 0;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			width: 100vw;
+			min-height: 100vh;
+			background-color: rgba(0, 0, 0, 0.5);
+		}
 
-        .projeto h1 {
-            margin-top: 10px;
-        }
+		.projeto {
+			display: flex;
+			flex-direction: column;
+			border: 1px solid black;
+			border-radius: 15px;
+			overflow: hidden;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+			padding: 15px;
+			margin: 10px;
+			width: 400px;
+			height: 500px;
+			background-color: rgba(0, 0, 0, 0.01);
+			backdrop-filter: blur(6px);
+		}
 
-        .projeto img {
-            width: 380px;
-            height: 320px;
-            margin-left: 10px;
-            margin-right: 10px;
-            background-color: lightblue;
-            text-align: center;
-            line-height: 200px;
-            font-size: 36px;
-            color: white;
-            border-radius: 5px;
-        }
+		.projeto h1 {
+			margin-top: 10px;
+		}
 
-        .projeto * {
-            text-decoration: none;
-            color: white;
-        }
-        .add-button {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .projeto a{
-            border-radius: 5px;
-            width: 150px;
-            height: 25px;
-            margin-bottom: 10px;
-            text-decoration: none;
-            color: white;
-            background-color: rgba(255, 255, 255, 0.25);
-        }
-	/* Estilo do corpo da página */
+		.projeto img {
+			width: 380px;
+			height: 320px;
+			margin-left: 10px;
+			margin-right: 10px;
+			background-color: lightblue;
+			text-align: center;
+			line-height: 200px;
+			font-size: 36px;
+			color: white;
+			border-radius: 5px;
+		}
+
+		.projeto * {
+			text-decoration: none;
+			color: white;
+		}
+
+		.add-button {
+			text-align: center;
+			margin-bottom: 20px;
+		}
+
+		.projeto a {
+			border-radius: 5px;
+			width: 150px;
+			height: 25px;
+			margin-bottom: 10px;
+			text-decoration: none;
+			color: white;
+			background-color: rgba(255, 255, 255, 0.25);
+		}
+
+		/* Estilo do corpo da página */
 
 
-/* Estilo do cabeçalho */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+		/* Estilo do cabeçalho */
+		@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 		* {
 			margin: 0;
@@ -111,7 +116,7 @@ if (!$conn) {
 			justify-content: center;
 			align-items: center;
 			min-height: 100vh;
-			background: url('https://img.freepik.com/free-vector/gradient-network-connection-background_23-2148865393.jpg')no-repeat;
+			background: url('https://i.pinimg.com/originals/09/64/a7/0964a7c66f449a148686bc265eaeaec8.jpg')repeat;
 			background-size: cover;
 			background-position: center;
 		}
@@ -198,11 +203,13 @@ if (!$conn) {
 			background: #fff;
 			color: #162938;
 		}
+
 		.container {
 			position: absolute;
 			top: 170px;
 			margin-top: 0px;
 		}
+
 		h1 {
 			font-size: 48px;
 			margin-top: 0px;
@@ -261,42 +268,50 @@ if (!$conn) {
 		.round-button:hover {
 			background-color: #45a049;
 		}
-    table {
-    border-collapse: collapse;
-    width: 100%;
-    position: relative;
-    
-}
 
-table:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -1;
-}
+		table {
+			border-collapse: collapse;
+			width: 100%;
+			position: relative;
 
-th, td {
-  text-align: center; 
-    color: white;
-    backdrop-filter: blur(5px); /* Aplica o efeito de desfoque (blur) */
-    background-color: rgba(0, 0, 0, 0.4); /* Define a cor de fundo com transparência */
-    border: 2px solid white; /* Adiciona a borda branca de 2px */
-}
+		}
 
-th {
- text-align: center;  
-  color: white;
-    backdrop-filter: blur(5px); /* Aplica o efeito de desfoque (blur) */
-    background-color: rgba(0, 0, 0, 0.4); /* Define a cor de fundo com transparência */
-    border: 2px solid white; /* Adiciona a borda branca de 2px */
-}
+		table:before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			z-index: -1;
+		}
+
+		th,
+		td {
+			text-align: center;
+			color: white;
+			backdrop-filter: blur(5px);
+			/* Aplica o efeito de desfoque (blur) */
+			background-color: rgba(0, 0, 0, 0.4);
+			/* Define a cor de fundo com transparência */
+			border: 2px solid white;
+			/* Adiciona a borda branca de 2px */
+		}
+
+		th {
+			text-align: center;
+			color: white;
+			backdrop-filter: blur(5px);
+			/* Aplica o efeito de desfoque (blur) */
+			background-color: rgba(0, 0, 0, 0.4);
+			/* Define a cor de fundo com transparência */
+			border: 2px solid white;
+			/* Adiciona a borda branca de 2px */
+		}
 
 
 		.button {
-			background-color: #4CAF50;
+			background-color: red;
 			color: white;
 			border: none;
 			padding: 10px 20px;
@@ -310,165 +325,186 @@ th {
 			top: 20px;
 			right: 20px;
 		}
+
 		.round-button {
-  display: inline-block;
-  background-color: grey;
-  color: white;
-  border-radius: 50%;
-  padding: 10px 20px;
-  text-decoration: none;
-  font-size: 16px;
-}
+			display: inline-block;
+			background-color: grey;
+			color: white;
+			border-radius: 50%;
+			padding: 10px 20px;
+			text-decoration: none;
+			font-size: 16px;
+		}
 
-.round-button:hover {
-  background-color: #45a049;
-}
-/* Estilos para a barra de pesquisa */
-#query {
-    padding: 10px;
-    width: 300px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-right: 10px;
-}
+		.round-button:hover {
+			background-color: #45a049;
+		}
 
-#searchButton {
-    padding: 10px 15px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
+		/* Estilos para a barra de pesquisa */
+		#query {
+			padding: 10px;
+			width: 300px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			margin-right: 10px;
+		}
 
-/* Estilos para os resultados da pesquisa */
-#searchResults {
-    margin-top: 20px;
-}
+		#searchButton {
+			padding: 10px 15px;
+			background-color: red;
+			color: #fff;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
 
-#searchResults h3 {
-    font-size: 18px;
-    margin-bottom: 5px;
-}
+		/* Estilos para os resultados da pesquisa */
+		#searchResults {
+			margin-top: 20px;
+		}
 
-#searchResults p {
-    margin: 5px 0;
-}
-/* Estilos para o botão "Atualizar Produtos" */
-#atualizarProdutosButton {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #007bff; /* Cor de fundo */
-    color: #fff; /* Cor do texto */
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-	float: right;
-}
+		#searchResults h3 {
+			font-size: 18px;
+			margin-bottom: 5px;
+		}
 
-#atualizarProdutosButton:hover {
-    background-color: #0056b3; /* Cor de fundo ao passar o mouse */
-}
+		#searchResults p {
+			margin: 5px 0;
+		}
 
-/* Adicione mais estilos conforme necessário */
+		/* Estilos para o botão "Atualizar Produtos" */
+		#atualizarProdutosButton {
+			display: inline-block;
+			padding: 10px 20px;
+			background-color: red;
+			/* Cor de fundo */
+			color: #fff;
+			/* Cor do texto */
+			border: none;
+			border-radius: 5px;
+			font-size: 16px;
+			text-decoration: none;
+			cursor: pointer;
+			transition: background-color 0.3s;
+			float: right;
+		}
 
+		#atualizarProdutosButton:hover {
+			background-color: red;
+			/* Cor de fundo ao passar o mouse */
+		}
+
+		/* Adicione mais estilos conforme necessário */
 	</style>
 
 	<script>
-// Quando o usuário rolar 20px para baixo da parte superior da página, mostra o botão
-window.onscroll = function() {scrollFunction()};
+		// Quando o usuário rolar 20px para baixo da parte superior da página, mostra o botão
+		window.onscroll = function () { scrollFunction() };
 
-function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    document.getElementById("voltar-ao-topo").classList.add("show");
-  } else {
-    document.getElementById("voltar-ao-topo").classList.remove("show");
-  }
-}
+		function scrollFunction() {
+			if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+				document.getElementById("voltar-ao-topo").classList.add("show");
+			} else {
+				document.getElementById("voltar-ao-topo").classList.remove("show");
+			}
+		}
 
-// Quando o usuário clicar no botão, volta para o topo da página
-function topFunction() {
-  document.body.scrollTop = 0; // Para Safari
-  document.documentElement.scrollTop = 0; // Para Chrome, Firefox, IE e Opera
-}
-</script>
+		// Quando o usuário clicar no botão, volta para o topo da página
+		function topFunction() {
+			document.body.scrollTop = 0; // Para Safari
+			document.documentElement.scrollTop = 0; // Para Chrome, Firefox, IE e Opera
+		}
+	</script>
 
 
 </head>
+
 <body>
-	
-<header>
+
+	<header>
 		<h2 class="logo">
 			<img src="./imagens/Capturar-removebg-preview.png" alt="Logo" class="logo-image"
 				style="width: 148px; height: auto;">
 		</h2>
 		<nav class="navigation">
-			<a href="primeira_pagina.php">Home</a>
+			<a href="primeira_pagina.php">Pagina Inicial</a>
 			<a href="pagina1.php">Projetos</a>
 			<a href="pagina3.php">Lojas</a>
 			<a href="perguntas_e_respostas.php">Forum</a>
-			<a href="contact.php">Contact</a>
+			<a href="contact.php">Contacto</a>
 			<button onclick="window.location.href= './detalhesconta.php';" class="btnlogin-popup">Conta</button>
 			</a>
 		</nav>
 	</header>
-	
-	
-  <div class="container">
-  <a href="update.php">
-        <button id="atualizarProdutosButton">Atualizar Produtos</button>
-    </a>
-    <input type="text" id="query" placeholder="Digite sua consulta">
-    <button id="searchButton">Pesquisar</button>
-
-	<table id="searchResults">
-    <!-- Conteúdo da tabela de resultados -->
-</table>
 
 
-    <script>
-        $(document).ready(function() {
-            $("#searchButton").click(function() {
-                var query = $("#query").val();
+	<div class="container">
+		<a href="update.php">
+		</a>
+<h1>Top 5 mais utilizados</h1>
 
-                $.ajax({
-                    type: "POST",
-                    url: "search.php",
-                    data: { query: query },
-                    success: function(result) {
-                        $("#searchResults").html(result);
-                    }
-                });
-            });
-        });
-    </script>
-	
-		<?php
-// Recupera os dados da tabela "produtos"
-$sql = "SELECT * FROM produtos";
-$result = mysqli_query($conn, $sql);
 
-// Exibe os dados em uma tabela HTML
-if (mysqli_num_rows($result) > 0) {
+		<table id="searchResults">
+			<!-- Conteúdo da tabela de resultados -->
+		</table>
+
+
+		<script>
+			$(document).ready(function () {
+				$("#searchButton").click(function () {
+					var query = $("#query").val();
+
+					$.ajax({
+						type: "POST",
+						url: "search.php",
+						data: { query: query },
+						success: function (result) {
+							$("#searchResults").html(result);
+						}
+					});
+				});
+			});
+		</script>
+
+<?php
+// Substitua as configurações do banco de dados conforme necessário
+$servername = "localhost";
+$username = "id20757658_miguelgaitas";
+$password = "MiguelGaitas24.";
+$dbname = "id20757658_dados_dos_registros";
+
+// Conectar ao banco de dados
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Verificar a conexão
+if ($conn->connect_error) {
+    die("Falha na conexão com o banco de dados: " . $conn->connect_error);
+}
+
+// Consulta para obter os top 5 componentes mais utilizados
+$sql = "SELECT * FROM componentes ORDER BY quantidade_utilizada DESC LIMIT 5";
+$result = $conn->query($sql);
+
+// Exibir os resultados em uma tabela HTML
+if ($result->num_rows > 0) {
     echo "<table>";
-    echo "<tr><th>__ID__</th><th>__Nome__</th><th>__Preço__</th><th>__Descrição__</th><th>__Stock__</th><th>Link para o Produto</th></tr>";
-    while ($row = mysqli_fetch_assoc($result)) {
-        echo "<tr><td>" . $row["id"] . "  </td><td>" . $row["nome"] . "</td><td>€" . $row["preco"] . "</td><td>" . $row["descricao"] . "</td><td>" . $row["quantidade_em_stock"] ."</td><td><a href='" . $row['link'] . "'>Produto</a></td></tr>";
+    echo "<tr><th>Nome</th><th>Quantidade Utilizada</th></tr>";
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr><td>" . $row["nome"] . "</td><td>" . $row["quantidade_utilizada"] . "</td></tr>";
     }
     echo "</table>";
 } else {
-    echo "Não foram encontrados produtos.";
+    echo "Não foram encontrados componentes.";
 }
 
-// Fecha a conexão com o banco de dados
-mysqli_close($conn);
+// Fechar a conexão com o banco de dados
+$conn->close();
 ?>
-</div>
-		<button id="voltar-ao-topo" onclick="topFunction()">Voltar ao topo</button>
+
+	</div>
+	<button id="voltar-ao-topo" onclick="topFunction()">Voltar ao topo</button>
 	</main>
-	
+
 </body>
+
 </html>

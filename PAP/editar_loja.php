@@ -8,165 +8,93 @@ include("./verificaradm.php");
 <html>
 <head>
 <link rel="icon" href="./imagens/favicon-32x32.png">
-    <style> 
-/* Definições gerais */
-body {
-  font-family: Arial, sans-serif;
-  font-size: 16px;
-  color: #333;
-  margin: 0;
-  padding: 0;
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: url('https://i.pinimg.com/originals/09/64/a7/0964a7c66f449a148686bc265eaeaec8.jpg') repeat;
+        background-size: cover;
+        background-position: center;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+       
+    }
+
+    form {
+        width: 80%;
+        max-width: 600px;
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        margin-top: 20px;
+    }
+
+    label {
+        display: block;
+        margin-top: 10px;
+        color: #162938;
+    }
+
+    input[type="text"] {
+        width: 95%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 2px solid #162938;
+        border-radius: 5px;
+        outline: none;
+        font-size: 1em;
+        color: #162938;
+    }
+
+    input[type="checkbox"] {
+        margin-right: 8px;
+    }
+
+    input[type="submit"] {
+        background-color: #162938;
+        color: #fff;
+        cursor: pointer;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #fff;
+        color: #162938;
+    }
+
+    .btn-voltar {
+      background-color: #162938;
+        color: #fff;
+        cursor: pointer;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
 }
 
-/* Estilo do cabeçalho */
-header {
-  background-color: #006699;
-  color: #fff;
-  padding: 20px;
-}
-
-header h1 {
-  margin: 0;
-}
-
-/* Estilo do menu */
-nav {
-  background-color: #eee;
-  padding: 10px;
-  margin-bottom: 20px;
-}
-
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-nav li {
-  display: inline-block;
-  margin-right: 10px;
-}
-
-nav a {
-  display: block;
-  padding: 10px;
-  text-decoration: none;
-  color: #333;
-}
-
-nav a:hover {
-  background-color: #ddd;
-}
-
-/* Estilo do conteúdo */
-section {
-  margin: 20px;
-}
-
-section h2 {
-  font-size: 24px;
-  margin: 0 0 20px;
-}
-
-/* Estilo do formulário */
-form {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-form label {
-  display: block;
-  margin-bottom: 10px;
-  font-weight: bold;
-}
-
-form input[type="text"],
-form input[type="email"],
-form textarea {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  margin-bottom: 20px;
-  font-size: 16px;
-}
-
-form textarea {
-  height: 200px;
-}
-
-form input[type="submit"] {
-  background-color: #006699;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-form input[type="submit"]:hover {
-  background-color: #004466;
-}
-
-/* Estilo das tabelas */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
-}
-
-table th,
-table td {
-  padding: 10px;
-  border: 1px solid #ccc;
-}
-
-table th {
-  background-color: #eee;
-  font-weight: bold;
-  text-align: left;
-}
-
-/* Estilo das mensagens de erro e sucesso */
-.message {
-  padding: 10px;
-  margin-bottom: 20px;
-  border-radius: 3px;
-  font-weight: bold;
-}
-
-.message.error {
-  background-color: #ffcccc;
-  color: #990000;
-}
-
-.message.success {
-  background-color: #ccffcc;
-  color: #006600;
-}
-.btn-voltar {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #3498db;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 5px;
-  font-size: 16px;
-  font-weight: bold;
-  margin-top: 20px;
-}
 .btn-voltar:hover {
-  background-color: #2980b9;
+  background-color: #fff;
+        color: #162938;
 }
-
 
 </style>
+
 	<title>Editar loja</title>
 </head>
 <body>
-	<h1>Editar loja</h1>
 
 	<?php
 		// Verificar se o ID da loja foi enviado através da URL
@@ -183,10 +111,11 @@ table th {
 				// Exibir o formulário de edição da loja
 				$loja = mysqli_fetch_assoc($resultado);
 				echo '<form method="POST" action="salvar_loja.php">';
+        echo'<h1>Editar loja</h1>';
 				echo '<input type="hidden" name="id" value="' . $loja['id'] . '">';
 				echo '<label>Nome:</label>';
 				echo '<input type="text" name="nome" value="' . $loja['nome'] . '"><br>';
-				echo '<label>Endereço:</label>';
+				echo '<label>Morada:</label>';
 				echo '<input type="text" name="endereco" value="' . $loja['endereco'] . '"><br>';
 				echo '<label>Cidade:</label>';
 				echo '<input type="text" name="cidade" value="' . $loja['cidade'] . '"><br>';
@@ -219,6 +148,9 @@ table th {
 				echo '<br>';
 				
 				echo '<input type="submit" value="Salvar">';
+        echo '<br>';
+        echo '<br>';
+        echo'<a href="addlojas.php" class="btn btn-voltar">Voltar para Adicionar Loja</a>';
 echo '</form>';
 } else {
 // Exibir mensagem de erro se a loja não foi encontrada
@@ -229,7 +161,8 @@ echo '<p>Loja não encontrada.</p>';
 echo '<p>ID da loja não especificado.</p>';
 }
 ?>
-<a href="addlojas.php" class="btn-voltar">Voltar para Adicionar Loja</a>
+
+
 
 </body>
 </html>

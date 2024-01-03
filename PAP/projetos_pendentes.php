@@ -5,7 +5,7 @@ include("./verificaradm.php");
 $servername = "localhost";
 $username = "id20757658_miguelgaitas";
 $password = "MiguelGaitas24.";
-$dbname = "id20757658_dados_dos_registros";
+$dbname = "id20757658_dados_dos_registros"; 
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -22,69 +22,72 @@ $result = $conn->query($sql);
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="icon" href="./imagens/favicon-32x32.png">
     <title>Projetos Pendentes</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
+   <style>
+    body {
+    font-family: 'Poppins', sans-serif;
+    background: url('https://i.pinimg.com/originals/09/64/a7/0964a7c66f449a148686bc265eaeaec8.jpg') repeat;
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
 
-        h1 {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 20px;
-        }
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+}
 
-        ul {
-            list-style-type: none;
-            padding: 0;
-            display: flex;
-            flex-wrap: wrap;
-        }
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+p{
+    color: #fff;
+}
+li {
+    background: rgba(255, 255, 255, 0.8);
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
 
-        li {
-            background-color: #fff;
-            margin: 10px;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            width: calc(33.33% - 20px);
-            box-sizing: border-box;
-        }
+a {
+    text-decoration: none;
+    color: #162938;
+}
 
-        a {
-            text-decoration: none;
-            color: #333;
-        }
+a:hover {
+    text-decoration: underline;
+}
 
-        a:hover {
-            text-decoration: underline;
-        }
+.admin-button {
+    text-align: center;
+    margin-top: 20px;
+}
 
-        p {
-            text-align: center;
-            font-weight: bold;
-        }
+.admin-button a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #162938;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
 
-        .admin-button {
-            text-align: center;
-            margin: 20px;
-        }
+.admin-button a:hover {
+    background-color: #fff;
+    color: #162938;
+}
 
-        .admin-button a {
-            background-color: #333;
-            color: #fff;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-
-        .admin-button a:hover {
-            background-color: #555;
-        }
     </style>
 </head>
 <body>

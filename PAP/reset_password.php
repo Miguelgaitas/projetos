@@ -6,193 +6,315 @@
     <title>Redefinir Senha</title>
 
     <style>
-        body{
+  	*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins',sans-serif;
+
+  }
+  body{
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url('https://static.vecteezy.com/system/resources/previews/006/430/145/original/technology-background-concept-circuit-board-electronic-system-futuristic-hi-tech-light-on-dark-blue-free-vector.jpg')no-repeat;
+    background: url('https://i.pinimg.com/originals/09/64/a7/0964a7c66f449a148686bc265eaeaec8.jpg')repeat;
     background-size: cover;
     background-position: center;
   } 
-        .form-container {
-  max-width: 400px;
-  background-color: #fff;
-  padding: 32px 24px;
-  font-size: 14px;
-  font-family: inherit;
-  color: #212121;
+  
+  header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+    
+  }
+  .logo{
+    font-size: 1em;
+    color: #fff;
+    user-select: none;
+  }
+ 
+   .navigation a {
+    position: relative;
+    font-size: 1.1em;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+  }
+  .navigation a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background: #fff;
+    border-radius: 5px;
+    transform-origin: right;
+    transform: scaleX(0);
+transition: transform .5s;
+
+
+  }
+  .navigation a:hover::after{
+    transform-origin: left;
+    transform: scaleX(1);
+  }
+  .navigation .btnlogin-popup{
+    width: 130px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid #fff;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: #fff;
+    font-weight: 500;
+    margin-left: 40px;
+    transition: .5s;
+  }
+  .navigation .btnlogin-popup:hover{
+    background: #fff;
+    color:#162938;
+  }
+  .warpper{
+    position:relative;
+	width:400px;
+	height:440px;
+	background:transparent;
+	border:2px solid rgba(255,255,255,.5);
+	border-radius:20px;
+	backdrop-filter:blur(20px);
+	box-shadow:0 0 30px rgba(0,0,0, .5);
+	display:flex;
+	justify-content: center;
+	align-items: center;
+  overflow: hidden;
+  transition: transform .5s ease,heigth .2s ease;
+  }
+  .warpper.active-popup{
+    transform: scale(1);
+  }
+  .warpper .form-box{
+    width: 100%;
+    padding: 40px;
+  }
+  .warpper .icon-close{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    background: #162938;
+    font-size: 2em;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items:center ;
+    border-bottom-left-radius: 20px;
+    cursor: pointer;
+    z-index: 1;
+  }
+  .form-box{
+    font-size: 1.1em;
+    color: #fff;
+    text-align: center;
+    margin-top: 20px;
+  }
+  .form-box h2{ 
+    font-size: 2em;
+    color: #fff;
+    text-align: center;
+  }
+
+    .input-box{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid #fff;
+    margin: 30px 0;
+    size: 40px;
+
+  }
+  .input-box label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1em;
+    color: #fff;
+    font-weight: 500;
+    pointer-events: none;
+    transition: .5s;
+
+  }
+  .input-box input:focus~label,
+  .input-box input:valid~label{
+    top: -5px;
+    
+  }
+  
+  
+  .input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color: #fff;
+    font-weight: 600;
+    padding: 0 35px 0 5 px;
+  }
+  .input-box .icon{
+    position: absolute;
+    right: 8px;
+    font-size: 1.2em;
+    color: #fff;
+    line-height: 57px;
+  }
+  .remenber-forgot{
+    font-size: .9em;
+    color: #fff;
+    font-weight: 500;
+    margin: -15px 0 15px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .remenber-forgot label input{
+    accent-color: #fff;
+    margin-right: 3px;
+  }
+  .remenber-forgot a {
+    color: #fff;
+    text-decoration: none;
+  }
+  .remenber-forgot a:hover{
+    text-decoration: underline;
+  }
+  .btn{
+    width: 100%;
+    height: 45px;
+    background: #fff;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size:1em;
+    color: #162938;
+    font-weight: 500;
+
+
+  }
+  .login-register{
+    font-size: .9em;
+    color: #fff;
+    text-align: center;
+    font-weight: 500;
+    margin: 25px 0 10px;
+  }
+  .login-register p a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+
+  }
+
+  .login-register p a:hover {
+    text-decoration: underline;
+  }
+  .popup-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
-  flex-direction: column;
-  gap: 20px;
-  box-sizing: border-box;
-  border-radius: 10px;
-  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.084), 0px 2px 3px rgba(0, 0, 0, 0.168);
-  content: center;
-}
-.form-container {
-  max-width: 400px;
-  background-color: #fff;
-  padding: 32px 24px;
-  font-size: 14px;
-  font-family: inherit;
-  color: #212121;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  gap: 1px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  border-radius: 10px;
-  -webkit-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.084), 0px 2px 3px rgba(0, 0, 0, 0.168);
-          box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.084), 0px 2px 3px rgba(0, 0, 0, 0.168);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
 }
 
-.form-container button:active {
-  scale: 0.95;
-}
-
-.form-container .logo-container {
+.popup-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
   text-align: center;
-  font-weight: 600;
-  font-size: 18px;
 }
 
-.form-container .form {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+.popup-content h3 {
+  margin-top: 0;
 }
 
-.form-container .form-group {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  gap: 1px;
+.popup-content p {
+  margin-bottom: 10px;
 }
 
-.form-container .form-group label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.form-container .form-group input {
-  width: 100%;
-  padding: 12px 1px;
-  border-radius: 6px;
-  font-family: inherit;
-  border: 1px solid #ccc;
-}
-
-.form-container .form-group input::-webkit-input-placeholder {
-  opacity: 0.5;
-}
-
-.form-container .form-group input::-moz-placeholder {
-  opacity: 0.5;
-}
-
-.form-container .form-group input:-ms-input-placeholder {
-  opacity: 0.5;
-}
-
-.form-container .form-group input::-ms-input-placeholder {
-  opacity: 0.5;
-}
-
-.form-container .form-group input::placeholder {
-  opacity: 0.5;
-}
-
-.form-container .form-group input:focus {
-  outline: none;
-  border-color: #1778f2;
-}
-
-.form-container .form-submit-btn {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  font-family: inherit;
+.popup-content button {
+  padding: 10px 20px;
+  background-color: #337ab7;
   color: #fff;
-  background-color: #212121;
   border: none;
-  width: 100%;
-  padding: 12px 16px;
-  font-size: 18px; 
-  font-weight: bold; 
-  gap: 10px;
-  margin: 12px 0;
+  border-radius: 3px;
   cursor: pointer;
-  border-radius: 6px;
-  -webkit-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.084), 0px 2px 3px rgba(0, 0, 0, 0.168);
-          box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.084), 0px 2px 3px rgba(0, 0, 0, 0.168);
 }
 
-.form-container .form-submit-btn:hover {
-  background-color: #313131;
+.popup-content button:hover {
+  background-color: #286090;
 }
-
-.form-container .link {
-  color: #1778f2;
-  text-decoration: none;
-}
-
-.form-container .signup-link {
-  -ms-flex-item-align: center;
-      align-self: center;
-  font-weight: 500;
-}
-
-.form-container .signup-link .link {
-  font-weight: 400;
-}
-
-.form-container .link:hover {
-  text-decoration: underline;
-}
-
-
 
     </style>
 </head>
 <body>
-<div class="form-container">
-      <div class="logo-container">
-       <h2>Redefinir Senha :</h2>
-      </div>
+	<header>
+	<h2 class="logo">
+        <img src="./imagens/Capturar-removebg-preview.png" alt="Logo" class="logo-image" style="width: 148px; height: auto;">
+      </h2>
+		<nav class="navigation">
+		</nav>
+	</header>
+	<div class="warpper">
+		<div class="form-box login">
+			<h2>Alterar senha</h2>
+			<form method="post" action="atualizar_senha.php">
+				<div class="input-box">
+					<span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
 
-      <form class="form" method="post" action="atualizar_senha.php">
-        <div class="form-group">
-        <label for="senha"><p>Nova Senha:</p></label>
-          <input  type="password" name="senha" placeholder="Nova Senha" style="font-size: 18px; font-weight: bold; color: #333;" required>
-        </div>
-        <div class="form-group">
-        <label for="senha"> <p>Confirmar Senha :</p></label>
-          <input  type="password" name="confirm_senha" placeholder="Confirmar senha " style="font-size: 18px; font-weight: bold; color: #333;" required>
+					<input  type="password" name="senha" required>
+					<label>Senha:</label>
+				</div>
+        <div class="input-box">
+					<span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+
+          <input  type="password" name="confirm_senha" required>
+          <label>Confirmar Senha :</label>
           <input type="text" name="token" value="<?php echo $_GET['token']?>" hidden>
-        </div>
+				</div>
 
-        <button class="form-submit-btn" type="submit">Alterar Senha </button>
-      </form>
-    </div>
+				<button type="submit" class="btn">Mudar senha</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+
+
+	<script src="script.js"></script>
+	<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
 </body>
 </html>
+
+
+

@@ -20,7 +20,7 @@
 			justify-content: center;
 			align-items: center;
 			min-height: 100vh;
-			background: url('https://img.freepik.com/free-vector/gradient-geometric-blue-technology-background_52683-78527.jpg')no-repeat;
+			background: url('https://i.pinimg.com/originals/09/64/a7/0964a7c66f449a148686bc265eaeaec8.jpg')repeat;
 			background-size: cover;
 			background-position: center;
 		}
@@ -262,69 +262,68 @@ function topFunction() {
 				style="width: 148px; height: auto;">
 		</h2>
 		<nav class="navigation">
-			<a href="primeira_pagina.php">Home</a>
+			<a href="primeira_pagina.php">Pagína Inicial</a>
 			<a href="pagina1.php">Projetos</a>
-			<a href="pagina2.php">Produtos</a>
+			<a href="pagina2.php">Top 5 Componentes</a>
 			<a href="perguntas_e_respostas.php">Forum</a>
-			<a href="contact.php">Contact</a>
+			<a href="contact.php">Contacto</a>
 			<button onclick="window.location.href= './detalhesconta.php';" class="btnlogin-popup">Conta</button>
 			</a>
 		</nav>
 	</header>
 
 	<main>
-	<h1>Tabela de Lojas e Produtos</h1>
 <br><br><br><br>
 <!-- Tabela de lojas e produtos -->
 <table>
 	<thead>
 		<tr>
-			<th>  __Nome_da_loja___</th>
-			<th>  _____Endereço_____ </th>
-			<th>  ___Cidade___  </th>
-			<th>  __Código_posta__ </th>
-			<th>  __Telefone__  </th>
-			<th>Produtos_disponíveis  </th>
+			<th>   Nome da loja</th>
+			<th>  Endereço</th>
+			<th>  Cidade </th>
+			<th>  Código postal </th>
+			<th>  Telefone  </th>
+			<th>Produtos disponíveis  </th>
 		</tr>
 	</thead>
 	<tbody>
-		<?php
-			// Conectar ao banco de dados
-			$conexao = mysqli_connect("localhost", "id20757658_miguelgaitas", "MiguelGaitas24.", "id20757658_dados_dos_registros");
+	<?php
+// Conectar ao banco de dados
+$conexao = mysqli_connect("localhost", "id20757658_miguelgaitas", "MiguelGaitas24.", "id20757658_dados_dos_registros");
 
-			// Selecionar todas as lojas
-			$query_lojas = "SELECT * FROM lojas";
-			$resultado_lojas = mysqli_query($conexao, $query_lojas);
+// Selecionar todas as lojas
+$query_lojas = "SELECT * FROM lojas";
+$resultado_lojas = mysqli_query($conexao, $query_lojas);
 
-			// Loop através das lojas
-			while ($loja = mysqli_fetch_assoc($resultado_lojas)) {
-				echo '<tr>';
-				echo '<td>' . $loja['nome'] . '</td>';
-				echo '<td>' . $loja['endereco'] . '</td>';
-				echo '<td>' . $loja['cidade'] . '</td>';
-				echo '<td>' . $loja['codigo_postal'] . '</td>';
-				echo '<td>' . $loja['telefone'] . '</td>';
+// Loop através das lojas
+while ($loja = mysqli_fetch_assoc($resultado_lojas)) {
+    echo '<tr>';
+    echo '<td>' . $loja['nome'] . '</td>';
+    echo '<td>' . $loja['endereco'] . '</td>';
+    echo '<td>' . $loja['cidade'] . '</td>';
+    echo '<td>' . $loja['codigo_postal'] . '</td>';
+    echo '<td>' . $loja['telefone'] . '</td>';
 
-				// Selecionar os produtos disponíveis na loja atual
-				$query_produtos_loja = "SELECT produto_id FROM lojas_produtos WHERE loja_id = " . $loja['id'];
-				$resultado_produtos_loja = mysqli_query($conexao, $query_produtos_loja);
+    // Selecionar os componentes disponíveis na loja atual
+    $query_componentes_loja = "SELECT componente_id FROM loja_componente WHERE loja_id = " . $loja['id'];
+    $resultado_componentes_loja = mysqli_query($conexao, $query_componentes_loja);
 
-				// Loop através dos produtos disponíveis na loja atual
-				$produtos = array();
-				while ($produto_loja = mysqli_fetch_assoc($resultado_produtos_loja)) {
-					$query_produto = "SELECT * FROM produtos WHERE id = " . $produto_loja['produto_id'];
-					$resultado_produto = mysqli_query($conexao, $query_produto);
-					$produto = mysqli_fetch_assoc($resultado_produto);
-					$produtos[] = $produto['nome'];
-				}
+    // Loop através dos componentes disponíveis na loja atual
+    $componentes = array();
+    while ($componente_loja = mysqli_fetch_assoc($resultado_componentes_loja)) {
+        $query_componente = "SELECT * FROM componentes WHERE id = " . $componente_loja['componente_id'];
+        $resultado_componente = mysqli_query($conexao, $query_componente);
+        $componente = mysqli_fetch_assoc($resultado_componente);
+        $componentes[] = $componente['nome'];
+    }
 
-				echo '<td>' . implode(', ', $produtos) . '</td>';
-				echo '</tr>';
-			}
+    echo '<td>' . implode(', ', $componentes) . '</td>';
+    echo '</tr>';
+}
 
-			// Fechar a conexão com o banco de dados
-			mysqli_close($conexao);
-		?>
+// Fechar a conexão com o banco de dados
+mysqli_close($conexao);
+?>
 	</tbody>
 </table>
 </body>
